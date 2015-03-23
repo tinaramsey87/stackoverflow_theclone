@@ -4,11 +4,8 @@ Rails.application.routes.draw do
   post "/log-in" => "sessions#create"
   get "/log-out" => "sessions#destroy", as: :log_out
 
-  resources :users do
-    resources :questions
-    resources :answers
-  end
-
+  resources :users
+  
   resources :questions do
     resources :answers
   end

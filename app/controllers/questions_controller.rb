@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @answer = Answer.new
   end
 
   def new
@@ -12,7 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       flash[:notice] = "Your have successfully added a question!"
       redirect_to questions_path
@@ -37,7 +38,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-     @question = Question.find(params[:id])
+    @question = Question.find(params[:id])
     @question.destroy
     flash[:alert] = "Question was destroyed successfully"
     redirect_to questions_path

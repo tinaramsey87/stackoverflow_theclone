@@ -1,6 +1,20 @@
 <h1>Here is the show page</h1>
 
 <%= @question.question %>
+  <% if @question.answers.any? %>
+    <% @question.answers.each do |answer| %>
+      <ul>
+        <li><%= answer.answer %>
+          <%= link_to 'Edit answer', edit_question_answer_path(@question, answer) %> |
+          <%= link_to 'Delete answer', question_answer_path(@question, answer),
+          :data => { :confirm => "Are you sure?", :method => "delete" } %>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+
+<%= render 'answers/form' %>
+
 
 <%= link_to 'Edit question', edit_question_path(@question) %> |
 <%= link_to 'Delete question', question_path(@question),

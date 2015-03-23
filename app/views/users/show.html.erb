@@ -1,0 +1,9 @@
+<%= current_user.name %>'s Profile
+
+<% if current_user.questions.any? %>
+  <ul>
+    <% current_user.questions.each do |question| %>
+      <li><%= link_to, question.question question_path(question) %></li>
+    <% end %>
+  </ul>
+<% end %>
