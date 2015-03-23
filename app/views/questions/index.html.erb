@@ -1,0 +1,12 @@
+<% if @questions.any? %>
+  <% @questions.each do |question| %>
+    <ul>
+      <li><%= question.question %></li>
+    </ul>
+  <% end %>
+<% else %>
+There aren't any questions yet. You should ask one!
+<% end %>
+
+
+<%= link_to 'Add question', new_question_path %>

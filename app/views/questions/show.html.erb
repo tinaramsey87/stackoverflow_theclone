@@ -1,0 +1,7 @@
+<h1>Here is the show page</h1>
+
+<%= @question.question %>
+
+<%= link_to 'Edit question', edit_question_path(@question) %> |
+<%= link_to 'Delete question', question_path(@question),
+:data => { :confirm => "Are you sure?", :method => "delete" } %>
