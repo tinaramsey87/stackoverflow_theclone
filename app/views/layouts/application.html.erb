@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>StackOverflowClone</title>
+  <title>StackOverflow Clone</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1>StackOverflow |<small> The Clone</small></h1>
+<% if current_user %>
+  <%= current_user.name %>
+<% end %>
+
+<%= flash[:notice] %>
+<%= flash[:alert] %>
 
 <%= yield %>
 
