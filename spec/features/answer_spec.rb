@@ -43,9 +43,25 @@ describe "the delete answer process" do
     fill_in 'Password', :with => "password"
     click_on 'log in'
     visit question_path(question)
-    save_and_open_page
     click_on "Delete answer"
     :confirm
     expect(page).to have_content "successfully"
+  end
+end
+
+describe "the besting an answer process" do
+  it "marks an answer as best" do
+    user = FactoryGirl.create(:user)
+    question = FactoryGirl.create(:question, user: user)
+    answer = FactoryGirl.create(:answer, question: question)
+    visit questions_path
+    click_on 'Log In'
+    fill_in 'Name', :with => "example name"
+    fill_in 'Password', :with => "password"
+    click_on 'log in'
+    visit question_path(question)
+    save_and_open_page
+    click_on "Mark this as best answer"
+    expect(page).to have_content "best"
   end
 end

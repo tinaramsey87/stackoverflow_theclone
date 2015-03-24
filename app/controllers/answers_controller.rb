@@ -48,6 +48,14 @@ class AnswersController < ApplicationController
 
   private
     def answer_params
-      params.require(:answer).permit(:answer, :question_id, :user_id)
+      params.require(:answer).permit(:answer, :question_id, :user_id, :best)
+    end
+
+    def best
+      @question = Question.find(params[:question_id])
+      @answer = @question.answers.find(params[:id])
+      @answer.update(best: true)
+      flash[:alert] = "Answer marked as best"
+      redirect_to question_path(@question)
     end
 end

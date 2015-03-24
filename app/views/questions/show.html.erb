@@ -11,7 +11,7 @@
               :data => { :confirm => "Are you sure?", :method => "delete" } %>
             <% end %>
             <% if @question.user_id == current_user.id %>
-              <%= link_to 'Mark this as best answer', :data => { :method => "best" } %>
+              <%= link_to 'Mark this as best answer', question_answer_path(@question, answer), :data => { :method => "put" } %>
             <% end %>
           <% end %>
         </li>
