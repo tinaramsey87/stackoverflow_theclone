@@ -1,1 +1,6 @@
-<%= render 'form' %>
+<% if !current_user %>
+  <p>You need to be logged in to ask a question. Log in above.</p>
+  <p>Or perhaps you are new? <%= link_to 'Sign up', new_user_path %>
+<% else %>
+  <%= render 'form' %>
+<% end %>

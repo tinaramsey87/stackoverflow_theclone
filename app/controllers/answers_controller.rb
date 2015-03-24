@@ -5,11 +5,12 @@ class AnswersController < ApplicationController
   end
 
   def create
+    @answer = current_user.answers.new(answer_params)
+    @answer.question_id = params[:question_id]
     @question = Question.find(params[:question_id])
     @user = User.find(@question.user_id)
-    @answer = @question.answers.new(answer_params)
     if @answer.save
-      UserMailer.question_answered(@user).deliver
+      UserMailer.question_answered(@user).deliver_now
       flash[:message] = "Your question has been answered!"
 
       flash[:notice] = "You have successfully submitted your answer"
@@ -47,6 +48,6 @@ class AnswersController < ApplicationController
 
   private
     def answer_params
-      params.require(:answer).permit(:answer)
+      params.require(:answer).permit(:answer, :question_id, :user_id)
     end
 end

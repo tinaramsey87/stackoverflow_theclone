@@ -1,21 +1,32 @@
-<h1>Here is the show page</h1>
+<h1><%= @question.question %></h1>
 
-<%= @question.question %>
   <% if @question.answers.any? %>
     <% @question.answers.each do |answer| %>
       <ul>
         <li><%= answer.answer %>
-          <%= link_to 'Edit answer', edit_question_answer_path(@question, answer) %> |
-          <%= link_to 'Delete answer', question_answer_path(@question, answer),
-          :data => { :confirm => "Are you sure?", :method => "delete" } %>
+          <% if current_user %>
+            <% if answer.user_id == current_user.id %>
+              <%= link_to 'Edit answer', edit_question_answer_path(@question, answer) %> |
+              <%= link_to 'Delete answer', question_answer_path(@question, answer),
+              :data => { :confirm => "Are you sure?", :method => "delete" } %>
+            <% end %>
+          <% end %>
         </li>
       </ul>
     <% end %>
+  <% else %>
+    <p>No answers yet.</p>
   <% end %>
+<% if current_user %>
+  <%= render 'answers/form' %>
+<% else %>
+  <p>Log in or sign up to post an answer</p>
+<% end %>
 
-<%= render 'answers/form' %>
-
-
-<%= link_to 'Edit question', edit_question_path(@question) %> |
-<%= link_to 'Delete question', question_path(@question),
-:data => { :confirm => "Are you sure?", :method => "delete" } %>
+<% if current_user %>
+  <% if @question.user_id == current_user.id %>
+    <%= link_to 'Edit question', edit_question_path(@question) %> |
+    <%= link_to 'Delete question', question_path(@question),
+    :data => { :confirm => "Are you sure?", :method => "delete" } %>
+  <% end %>
+<% end %>

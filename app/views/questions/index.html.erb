@@ -1,12 +1,17 @@
+<h2>Welcome to Stackoverflow: the clone</h2>
+
+<% if !current_user %>
+<button class="btn btn-large btn-info"><%= link_to "Sign Up", new_user_path %></button>
+<% end %>
+
 <% if @questions.any? %>
-  <% @questions.each do |question| %>
-    <ul>
-      <li><%= link_to question.question, question_path(question) %></li>
-    </ul>
-  <% end %>
+<% @questions.each do |question| %>
+<ul>
+  <li><%= link_to question.question, question_path(question) %></li>
+</ul>
+<% end %>
 <% else %>
 There aren't any questions yet. You should ask one!
 <% end %>
-
 
 <%= link_to 'Add question', new_question_path %>
