@@ -12,7 +12,8 @@ end
 
 describe "the edit a question process" do
   it "updates an existing question" do
-    question = Question.create(question: "Who did you pick?")
+    question = FactoryGirl.create(:question)
+    FactoryGirl.create(:user)
     visit question_path(question)
     click_on 'Edit question'
     click_on 'Update Question'
@@ -22,7 +23,7 @@ end
 
 describe "the delete question process" do
   it "deletes a question permanently" do
-    question = Question.create(question: "Who did you pick?")
+    question = FactoryGirl.create(:question)
     visit question_path(question)
     click_on 'Delete question'
     :confirm
