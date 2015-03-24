@@ -28,4 +28,5 @@ group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'pry'
+  gem 'launchy'
 end

@@ -13,3 +13,6 @@
 <% else %>
 There aren't any questions yet. You should ask one!
 <% end %>
+<% if current_user %>
+<%= link_to 'Add question', new_question_path %>
+<% end %>

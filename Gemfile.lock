@@ -201,6 +201,7 @@ DEPENDENCIES
   coffee-rails
   factory_girl_rails
   jquery-rails
+  launchy
   letter_opener
   pg
   pry
