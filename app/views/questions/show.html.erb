@@ -10,6 +10,9 @@
               <%= link_to 'Delete answer', question_answer_path(@question, answer),
               :data => { :confirm => "Are you sure?", :method => "delete" } %>
             <% end %>
+            <% if @question.user_id == current_user.id %>
+              <%= link_to 'Mark this as best answer', :data => { :method => "best" } %>
+            <% end %>
           <% end %>
         </li>
       </ul>

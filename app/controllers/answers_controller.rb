@@ -23,13 +23,13 @@ class AnswersController < ApplicationController
 
   def edit
     @question = Question.find(params[:question_id])
-    @answer = Answer.find(params[:id])
+    @answer = current_user.answers.find(params[:id])
   end
 
   def update
     @question = Question.find(params[:question_id])
-    @answer = Answer.find(params[:id])
-    if @answer.save
+    @answer = current_user.answers.find(params[:id])
+    if @answer.update(answer_params)
       flash[:notice] = "Your answer was updated successfully"
       redirect_to question_path(@question)
     else
